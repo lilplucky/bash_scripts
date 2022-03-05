@@ -1,0 +1,43 @@
+#!/bin/bash
+figlet  MAC_BABY
+#edits  by  author 
+ulinered="\033[4;31;40m"
+red="\033[31;40m"
+none="\033[0m"
+echo -e $red This  program  requires  the   following  modules to  run$none
+echo -e $ulinered 1.figlet $none 
+echo -e $ulinered 2.sysvbanner $none
+set +x
+echo   fancy  text  by  ANONYMOUS  author 
+echo  starting program....
+echo putting  the  wireless adapter  down
+sudo ifconfig  wlan0  down
+echo  "done....."
+echo  "killing  processes  that could  cause  trouble" 
+echo "Killing  networking  service"
+sudo /etc/init.d/networking  stop
+echo "Killing network-manager  service"
+sudo service NetworkManager  stop
+echo "killing tor service"
+sudo /etc/init.d/tor  stop
+echo "additional airmon-ng  halt services"
+airmon-ng check kill
+echo "done..stopping network-manager   &  networking  services "
+echo "putting down the  adapter  again"
+echo "CHECKING FOR MAC ANONYMITY IDENTITY!!"
+echo  changing  mac......  to  random  mac  
+sudo macchanger  -r  wlan0
+echo  "done...."
+echo    the  new  mac is  show below
+sudo macchanger -s  wlan0 
+echo  enabling  monitor  mode  on wlan0......
+sudo iwconfig  wlan0 mode  monitor
+echo  "ok use  the  adapter as  wlan0" 
+echo    ">>>>>>.....done"
+echo  "bringinging  the  adapter  up"
+sudo ifconfig  wlan0  up
+echo "done ....Quiting"
+echo  "BYE.>>>>>>>>>>>>>>>>"
+echo  "sleeping  to  quit"
+sleep 1
+sysvbanner QUITiNG.....
